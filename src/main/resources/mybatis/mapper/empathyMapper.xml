@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Empathy">
+	
+<!--
+E_NO
+F_EMAIL
+R_NO
+  -->
+	<insert id="insertLikeOrHate" parameterType="Map">
+		insert into tb_empathy values(e_no_seq.nextval,#{f_email},${r_no},#{e_type})
+	</insert>
+	
+	<select id="selectEmpathyYN" resultType="_int" parameterType="Map">
+		select count(*) from tb_empathy where r_no = ${r_no} and f_email = #{f_email}
+	</select>
+	
+	<select id="selectEmpathyCnt" resultType="_int" parameterType="Map">
+		select count(r_no) from tb_empathy where r_no = ${r_no}
+	</select>
+	
+	<delete id="deleteEmpathy" parameterType="Map">
+		delete from tb_empathy where r_no = #{r_no}
+	</delete>
+</mapper>
+
+
